@@ -1,8 +1,7 @@
 #include<iostream>
 using namespace std;
 
-struct Node
-{
+struct Node{
     int player_id;
     float score;
     int height;
@@ -17,30 +16,26 @@ struct Node
     } 
 };
 
-class Player
-{
+class Player{
 public:
     Node* root;
     Player(){
     	root = 	NULL;
     	}
 
-    int getHeight(Node* node)
-    {
+    int getHeight(Node* node){
         if(!node) return 0;
-        int lheight = height(node->left);
-        int rheight = height(node->right);
+        int lheight = getHeight(node->left);
+        int rheight = getHeight(node->right);
         return max(lheight, rheight) + 1;
     }
 
-    int getBalancedFactor(Node* node)
-    {
+    int getBalancedFactor(Node* node){
         if (root == NULL) return 0;
-        return (getheight(root->left) - getheight(root->right));
+        return (getHeight(root->left) - getHeight(root->right));
     }
 
-    Node* rightRotate(Node* y)
-    {
+    Node* rightRotate(Node* y){
         Node* x = y->left;
         Node* T2 = x->right;
 
@@ -53,8 +48,7 @@ public:
         return x;
     }
 
-    Node* leftRotate(Node* x)
-    {
+    Node* leftRotate(Node* x){
         Node* y = x->right;
         Node* T2 = y->left;
 
@@ -67,8 +61,7 @@ public:
         return y;
     }
 
-    Node* insertNode(Node* node, int pid, float sc)
-    {
+    Node* insertNode(Node* node, int pid, float sc){
         if (!node)
             return new Node(pid, sc);
 
@@ -104,8 +97,7 @@ public:
         return node;
     }
 
-    void display(Node* node)
-    {
+    void display(Node* node){
         if (node)
         {
             display(node->left);
